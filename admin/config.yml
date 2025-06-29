@@ -27,3 +27,8 @@ collections:
       - { label: "Date", name: "date", widget: "datetime" }
       - { label: "Location", name: "location", widget: "string" }
       - { label: "Description", name: "body", widget: "markdown" }
+
+
+include:
+  - admin
+
