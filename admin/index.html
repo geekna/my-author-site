@@ -7,11 +7,16 @@
     <script src="https://unpkg.com/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
   </head>
   <body>
-    <script>
+    <script type="module">
       window.CMS_MANUAL_INIT = true;
-      fetch('/admin/config.yml')
-        .then(res => res.text())
-        .then(config => CMS.init({ config: YAML.parse(config) }));
+
+      // Wait until the CMS is fully loaded in the window
+      window.addEventListener("DOMContentLoaded", async () => {
+        const res = await fetch("/admin/config.yml");
+        const raw = await res.text();
+        const config = window.jsyaml.load(raw);
+        window.CMS.init({ config });
+      });
     </script>
   </body>
 </html>
